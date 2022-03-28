@@ -8,7 +8,7 @@ final int START_BUTTON_X = 248;
 final int START_BUTTON_Y = 360;
 
 PImage title, gameover, startNormal, startHovered, restartNormal, restartHovered;
-PImage bg, soil8x24;
+PImage bg, soil0,soil1,soil2,soil3,soil4,soil5,stone1,stone2;
 
 // For debug function; DO NOT edit or remove this!
 int playerHealth = 0;
@@ -25,7 +25,14 @@ void setup() {
 	startHovered = loadImage("img/startHovered.png");
 	restartNormal = loadImage("img/restartNormal.png");
 	restartHovered = loadImage("img/restartHovered.png");
-	soil8x24 = loadImage("img/soil8x24.png");
+	soil0 = loadImage("img/soil0.png");
+  soil1 = loadImage("img/soil1.png");
+  soil2 = loadImage("img/soil2.png");
+  soil3 = loadImage("img/soil3.png");
+  soil4 = loadImage("img/soil4.png");
+  soil5 = loadImage("img/soil5.png");
+  stone1 = loadImage("img/stone1.png");
+  stone2 = loadImage("img/stone2.png");
 }
 
 void draw() {
@@ -82,8 +89,55 @@ void draw() {
 		rect(0, 160 - GRASS_HEIGHT, width, GRASS_HEIGHT);
 
 		// Soil - REPLACE THIS PART WITH YOUR LOOP CODE!
-		image(soil8x24, 0, 160);
-
+		
+    for(int i=0;i<8;i++){
+      for(int j=0;j<24;j++){
+        if(j<4){
+        image(soil0,i*80,160+j*80);
+        }else if(j<8){
+        image(soil1,i*80,160+j*80);
+        }else if(j<12){
+        image(soil2,i*80,160+j*80);
+        }else if(j<16){
+        image(soil3,i*80,160+j*80);
+        }else if(j<20){
+        image(soil4,i*80,160+j*80);
+        }else if(j<24){
+        image(soil5,i*80,160+j*80);
+        }
+        
+      }
+    }
+    
+    //draw stones
+    for(int i=0;i<8;i++){//layer1 to 8
+      image(stone1,i*80,160+i*80);
+    }
+    for(int i=0;i<8;i++){//layer9-16
+      for(int j=8;j<16;j++){
+        if(j==8 || j==11||j==12||j==15){
+          if(i==1 || i==2||i==5||i==6){
+          image(stone1,i*80,160+j*80);
+          }
+        }else{
+          if(i==0 || i==3||i==4||i==7){
+          image(stone1,i*80,160+j*80);
+          }
+        }
+      }
+    }
+    
+    for(int i=0;i<8;i++){//layer17-24
+      for(int j=16;j<24;j++){
+        if(i+j==17||i+j==18||i+j==20||i+j==21||i+j==23||i+j==24||i+j==26||i+j==27||i+j==29||i+j==30){
+          image(stone1,i*80,160+j*80);
+          if(i+j==18||i+j==21||i+j==24||i+j==27||i+j==30){
+          image(stone2,i*80,160+j*80);
+          }
+        }
+      }
+    }
+      
 		// Player
 
 		// Health UI
