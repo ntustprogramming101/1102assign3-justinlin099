@@ -7,11 +7,11 @@ final int START_BUTTON_H = 60;
 final int START_BUTTON_X = 248;
 final int START_BUTTON_Y = 360;
 
-PImage title, gameover, startNormal, startHovered, restartNormal, restartHovered;
+PImage title, gameover, startNormal, startHovered, restartNormal, restartHovered,heartImg;
 PImage bg, soil0,soil1,soil2,soil3,soil4,soil5,stone1,stone2;
 
 // For debug function; DO NOT edit or remove this!
-int playerHealth = 0;
+int playerHealth = 3;
 float cameraOffsetY = 0;
 boolean debugMode = false;
 
@@ -25,6 +25,7 @@ void setup() {
 	startHovered = loadImage("img/startHovered.png");
 	restartNormal = loadImage("img/restartNormal.png");
 	restartHovered = loadImage("img/restartHovered.png");
+  heartImg = loadImage("img/life.png");//heart
 	soil0 = loadImage("img/soil0.png");
   soil1 = loadImage("img/soil1.png");
   soil2 = loadImage("img/soil2.png");
@@ -33,6 +34,7 @@ void setup() {
   soil5 = loadImage("img/soil5.png");
   stone1 = loadImage("img/stone1.png");
   stone2 = loadImage("img/stone2.png");
+  
 }
 
 void draw() {
@@ -141,6 +143,12 @@ void draw() {
 		// Player
 
 		// Health UI
+
+    for(int i=0;i<playerHealth;i++)
+    {
+      image(heartImg,10+i*70,10);
+    }
+
 
 		break;
 
